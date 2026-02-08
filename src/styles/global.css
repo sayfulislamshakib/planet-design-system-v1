@@ -1,0 +1,63 @@
+﻿@import './fonts.css';
+@import './tokens.css';
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--pds-color-app-bg);
+  color: var(--pds-color-text);
+  font-family: var(--pds-font-body);
+  font-size: var(--pds-text-md);
+  line-height: var(--pds-line-height-md);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  font-family: var(--pds-font-heading);
+  font-weight: 600;
+  color: var(--pds-color-text);
+}
+
+a {
+  color: var(--pds-color-primary);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--pds-color-primary-hover);
+}
+
+p {
+  margin: 0;
+}
+
+.sbdocs .pds-docs-fullwidth {
+  width: 100%;
+  max-width: 100%;
+}
+
+.sbdocs .pds-docs-fullwidth > * {
+  width: 100%;
+  max-width: 100%;
+}
+
+.sbdocs .docblock-argstable::before {
+  content: 'Properties';
+  display: table-caption;
+  caption-side: top;
+  text-align: left;
+  font-family: var(--pds-font-heading);
+  font-weight: 600;
+  color: var(--pds-color-text);
+  font-size: var(--pds-text-xl);
+  line-height: var(--pds-line-height-xl);
+  padding-bottom: 8px;
+}

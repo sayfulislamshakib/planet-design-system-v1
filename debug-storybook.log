@@ -1,0 +1,31 @@
+[15:04:04.946] [INFO] storybook v10.2.7
+[15:04:05.583] [DEBUG] Getting package.json info for C:/Users/SayfulIslam/Documents/GitHub/planet-design-system-v1/package.json...
+[15:04:07.025] [DEBUG] Serving static files from [36mnode_modules/@chromatic-com/storybook/assets[39m at [36m/addon-visual-tests-assets[39m
+[15:04:07.025] [INFO] Starting...
+[15:04:07.389] [DEBUG] Starting preview..
+[15:04:07.681] [WARN] 🚨 Unable to index ./src/components/buttons/button.docs.mdx,./src/components/buttons/button.stories.tsx:
+  Error: You created a component docs page for 'Components/Button', but also tagged the CSF file with 'autodocs'. This is probably a mistake.
+    at _StoryIndexGenerator.chooseDuplicate (file:///C:/Users/SayfulIslam/Documents/GitHub/planet-design-system-v1/node_modules/storybook/dist/core-server/index.js:6048:15)
+    at file:///C:/Users/SayfulIslam/Documents/GitHub/planet-design-system-v1/node_modules/storybook/dist/core-server/index.js:6087:52
+    at Array.forEach (<anonymous>)
+    at _StoryIndexGenerator.getIndexAndStats (file:///C:/Users/SayfulIslam/Documents/GitHub/planet-design-system-v1/node_modules/storybook/dist/core-server/index.js:6084:23)
+    at async _StoryIndexGenerator.getIndex (file:///C:/Users/SayfulIslam/Documents/GitHub/planet-design-system-v1/node_modules/storybook/dist/core-server/index.js:6071:13)
+    at async getOptimizeDeps (file:///C:/Users/SayfulIslam/Documents/GitHub/planet-design-system-v1/node_modules/@storybook/builder-vite/dist/index.js:1862:15)
+    at async createViteServer (file:///C:/Users/SayfulIslam/Documents/GitHub/planet-design-system-v1/node_modules/@storybook/builder-vite/dist/index.js:1888:19)
+    at async Module.start (file:///C:/Users/SayfulIslam/Documents/GitHub/planet-design-system-v1/node_modules/@storybook/builder-vite/dist/index.js:1923:17)
+    at async storybookDevServer (file:///C:/Users/SayfulIslam/Documents/GitHub/planet-design-system-v1/node_modules/storybook/dist/core-server/index.js:7207:83)
+    at async buildOrThrow (file:///C:/Users/SayfulIslam/Documents/GitHub/planet-design-system-v1/node_modules/storybook/dist/core-server/index.js:4504:12)
+[15:04:07.693] [ERROR] Failed to build the preview
+[15:04:07.695] [ERROR] Error: Unable to index ./src/components/buttons/button.docs.mdx,./src/components/buttons/button.stories.tsx
+    at _StoryIndexGenerator.getIndexAndStats (file:///C:/Users/SayfulIslam/Documents/GitHub/planet-design-system-v1/node_modules/storybook/dist/core-server/index.js:6092:15)
+    at async _StoryIndexGenerator.getIndex (file:///C:/Users/SayfulIslam/Documents/GitHub/planet-design-system-v1/node_modules/storybook/dist/core-server/index.js:6071:13)
+    at async getOptimizeDeps (file:///C:/Users/SayfulIslam/Documents/GitHub/planet-design-system-v1/node_modules/@storybook/builder-vite/dist/index.js:1862:15)
+    at async createViteServer (file:///C:/Users/SayfulIslam/Documents/GitHub/planet-design-system-v1/node_modules/@storybook/builder-vite/dist/index.js:1888:19)
+    at async Module.start (file:///C:/Users/SayfulIslam/Documents/GitHub/planet-design-system-v1/node_modules/@storybook/builder-vite/dist/index.js:1923:17)
+    at async storybookDevServer (file:///C:/Users/SayfulIslam/Documents/GitHub/planet-design-system-v1/node_modules/storybook/dist/core-server/index.js:7207:83)
+    at async buildOrThrow (file:///C:/Users/SayfulIslam/Documents/GitHub/planet-design-system-v1/node_modules/storybook/dist/core-server/index.js:4504:12)
+    at async buildDevStandalone (file:///C:/Users/SayfulIslam/Documents/GitHub/planet-design-system-v1/node_modules/storybook/dist/core-server/index.js:7577:66)
+    at async withTelemetry (file:///C:/Users/SayfulIslam/Documents/GitHub/planet-design-system-v1/node_modules/storybook/dist/_node-chunks/chunk-TQNBPEAH.js:218:12)
+    at async dev (file:///C:/Users/SayfulIslam/Documents/GitHub/planet-design-system-v1/node_modules/storybook/dist/bin/core.js:2734:3)
+[15:04:07.701] [WARN] Broken build, fix the error above.
+You may need to refresh the browser.

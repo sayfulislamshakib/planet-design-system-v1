@@ -59,6 +59,10 @@
     box-shadow 140ms ease;
 }
 
+.pds-button[data-rounded='true'] {
+  border-radius: 999px;
+}
+
 .pds-button:hover:not(:disabled) {
   background-color: var(--btn-bg-hover);
   border-color: var(--btn-border-hover);
@@ -81,6 +85,11 @@
   outline-offset: 2px;
   color: var(--btn-text-focus);
   --btn-icon-color: var(--btn-icon-focus);
+}
+
+.pds-button:focus:not(:focus-visible):not(:disabled) {
+  outline: none;
+  box-shadow: none;
 }
 
 .pds-button:disabled {

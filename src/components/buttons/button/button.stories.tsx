@@ -17,8 +17,31 @@ const meta: Meta<typeof Button> = {
   parameters: {
     layout: 'fullscreen',
     docs: {
-      canvas: { layout: 'fullscreen', sourceState: 'shown' },
-      source: { type: 'dynamic' },
+      description: {
+        component: [
+          '## Usage with Icon',
+          '',
+          '`leftIcon`, `rightIcon`, or `iconOnly` can be used with icon names from `@justgo/planet-icons`.',
+          'For icon-only buttons, always provide an `aria-label` for accessibility.',
+          '',
+          '```tsx',
+          "import { Button } from 'planet-design-system-v1';",
+          "import { IconCloseStyleOutline } from '@justgo/planet-icons';",
+          '',
+          '<Button leftIcon leftIconName=\"IconCloseStyleOutline\">Pay Now</Button>',
+          '<Button rightIcon rightIconName=\"IconCloseStyleOutline\">Pay Now</Button>',
+          '<Button iconOnly iconOnlyName=\"IconCloseStyleOutline\" aria-label=\"Pay Now\" />',
+          '```',
+          '',
+          '## Imports',
+          '',
+          '```tsx',
+          "import { Button } from 'planet-design-system-v1';",
+          "import type { ButtonProps } from 'planet-design-system-v1';",
+          '```',
+        ].join('\n'),
+      },
+      canvas: { layout: 'fullscreen', sourceState: 'none' },
     },
     controls: {
       sort: 'none',
@@ -61,6 +84,7 @@ const meta: Meta<typeof Button> = {
     size: 'md',
     state: 'default',
     outline: false,
+    rounded: false,
     iconOnly: false,
     leftIcon: false,
     rightIcon: false,
@@ -75,6 +99,11 @@ const meta: Meta<typeof Button> = {
       control: 'text',
       name: 'text',
       description: 'Button Label',
+    },
+    'aria-label': {
+      control: 'text',
+      description: 'Accessible label (required for icon-only buttons).',
+      if: { arg: 'iconOnly', truthy: true },
     },
     type: {
       control: 'select',
@@ -104,6 +133,11 @@ const meta: Meta<typeof Button> = {
       control: 'boolean',
       description: 'Whether the button is outlined',
       name: 'outline?',
+    },
+    rounded: {
+      control: 'boolean',
+      description: 'Whether the button is fully rounded',
+      name: 'rounded?',
     },
     iconOnly: {
       control: 'boolean',

@@ -61,3 +61,8 @@ p {
   line-height: var(--pds-line-height-xl);
   padding-bottom: 8px;
 }
+
+.sbdocs .docs-story {
+  padding-top: 32px;
+  padding-bottom: 32px;
+}

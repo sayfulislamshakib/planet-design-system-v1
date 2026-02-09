@@ -23,6 +23,7 @@ export type ButtonProps = Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'type' |
   size?: ButtonSize;
   state?: ButtonState;
   outline?: boolean;
+  rounded?: boolean;
   iconOnly?: boolean;
   leftIcon?: boolean;
   rightIcon?: boolean;
@@ -37,6 +38,7 @@ export function Button({
   size = 'md',
   state = 'default',
   outline = false,
+  rounded = false,
   iconOnly = false,
   leftIcon = false,
   rightIcon = false,
@@ -87,6 +89,7 @@ export function Button({
       data-size={size}
       data-state={state}
       data-outline={outline ? 'true' : 'false'}
+      data-rounded={rounded ? 'true' : 'false'}
       data-icon-only={isIconOnly ? 'true' : 'false'}
       data-full-width={fullWidth ? 'true' : 'false'}
     >

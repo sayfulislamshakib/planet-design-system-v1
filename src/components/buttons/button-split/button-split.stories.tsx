@@ -64,7 +64,7 @@ const meta: Meta<typeof SplitButton> = {
     splitAriaLabel: 'More options',
     onClick: {},
     onSplitClick: {},
-    onMenuSelect: {},
+    onMenuSelect: () => {},
   },
   argTypes: {
     children: {

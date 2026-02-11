@@ -23,6 +23,9 @@ jobs:
         with:
           node-version: '20'
           cache: npm
+      - name: Configure npm auth for JustGo feed
+        run: |
+          echo "//pkgs.dev.azure.com/azolvedevops/JustGo/_packaging/justgo/npm/registry/:_authToken=${{ secrets.AZURE_DEVOPS_NPM_TOKEN }}" >> ~/.npmrc
       - run: npm ci
       - run: npm run build-storybook
       - uses: actions/upload-pages-artifact@v3

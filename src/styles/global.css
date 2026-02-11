@@ -12,6 +12,7 @@ body {
   font-family: var(--pds-font-body);
   font-size: var(--pds-text-md);
   line-height: var(--pds-line-height-md);
+  transform-origin: center center !important;
 }
 
 h1,
@@ -65,17 +66,4 @@ p {
 .sbdocs .docs-story {
   padding-top: 32px;
   padding-bottom: 32px;
-}
-
-.sbdocs .pds-docs-overflow,
-.sbdocs .pds-docs-overflow > * {
-  overflow: visible !important;
-}
-
-.sbdocs .docs-story,
-.sbdocs .docs-story > div,
-.sbdocs .docs-story > div > div,
-.sbdocs .sbdocs-preview,
-.sbdocs .sbdocs-preview > div {
-  overflow: visible !important;
 }

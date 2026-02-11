@@ -1,5 +1,6 @@
 import type { CSSProperties } from 'react';
 import { useEffect, useId, useLayoutEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { Button } from '../button/button';
 import type { ButtonProps } from '../button/button';
 import './button-split.css';
@@ -39,6 +40,7 @@ export function SplitButton(props: SplitButtonProps) {
   const hasMenu = Boolean(menuItems && menuItems.length > 0);
   const [menuOpen, setMenuOpen] = useState(false);
   const [menuAlign, setMenuAlign] = useState<'left' | 'right'>('left');
+  const [menuStyle, setMenuStyle] = useState<CSSProperties | null>(null);
   const menuId = useId();
   const menuRef = useRef<HTMLDivElement>(null);
   const iconWrapRef = useRef<HTMLSpanElement>(null);
@@ -83,8 +85,15 @@ export function SplitButton(props: SplitButtonProps) {
     const menuWidth = menuEl.getBoundingClientRect().width;
     const anchorRect = anchorEl.getBoundingClientRect();
     const spaceRight = window.innerWidth - anchorRect.left;
+    const align = menuWidth <= spaceRight ? 'left' : 'right';
+    const left =
+      align === 'left'
+        ? anchorRect.left + window.scrollX
+        : anchorRect.right - menuWidth + window.scrollX;
+    const top = anchorRect.bottom + window.scrollY + 6;
 
-    setMenuAlign(menuWidth <= spaceRight ? 'left' : 'right');
+    setMenuAlign(align);
+    setMenuStyle({ top, left });
   }, [menuOpen, menuItems?.length]);
 
   useEffect(() => {
@@ -107,17 +116,43 @@ export function SplitButton(props: SplitButtonProps) {
       const menuWidth = menuEl.getBoundingClientRect().width;
       const anchorRect = anchorEl.getBoundingClientRect();
       const spaceRight = window.innerWidth - anchorRect.left;
-      setMenuAlign(menuWidth <= spaceRight ? 'left' : 'right');
+      const align = menuWidth <= spaceRight ? 'left' : 'right';
+      const left =
+        align === 'left'
+          ? anchorRect.left + window.scrollX
+          : anchorRect.right - menuWidth + window.scrollX;
+      const top = anchorRect.bottom + window.scrollY + 6;
+      setMenuAlign(align);
+      setMenuStyle({ top, left });
+    };
+
+    const handleScroll = () => {
+      const menuEl = menuRef.current;
+      const anchorEl = iconWrapRef.current;
+      if (!menuEl || !anchorEl) return;
+      const menuWidth = menuEl.getBoundingClientRect().width;
+      const anchorRect = anchorEl.getBoundingClientRect();
+      const spaceRight = window.innerWidth - anchorRect.left;
+      const align = menuWidth <= spaceRight ? 'left' : 'right';
+      const left =
+        align === 'left'
+          ? anchorRect.left + window.scrollX
+          : anchorRect.right - menuWidth + window.scrollX;
+      const top = anchorRect.bottom + window.scrollY + 6;
+      setMenuAlign(align);
+      setMenuStyle({ top, left });
     };
 
     document.addEventListener('pointerdown', handlePointerDown);
     document.addEventListener('keydown', handleKeyDown);
     window.addEventListener('resize', handleResize);
+    window.addEventListener('scroll', handleScroll, true);
 
     return () => {
       document.removeEventListener('pointerdown', handlePointerDown);
       document.removeEventListener('keydown', handleKeyDown);
       window.removeEventListener('resize', handleResize);
+      window.removeEventListener('scroll', handleScroll, true);
     };
   }, [menuOpen]);
 
@@ -168,30 +203,34 @@ export function SplitButton(props: SplitButtonProps) {
           data-menu-open={menuOpen ? 'true' : 'false'}
         />
         {hasMenu && menuOpen && (
-          <div
-            ref={menuRef}
-            id={menuId}
-            role="menu"
-            className="pds-split-button__menu"
-            data-align={menuAlign}
-          >
-            {menuItems?.map((item) => (
-              <button
-                key={item.value}
-                type="button"
-                role="menuitem"
-                className="pds-split-button__menu-item"
-                disabled={item.disabled}
-                onClick={() => {
-                  if (item.disabled) return;
-                  onMenuSelect?.(item);
-                  setMenuOpen(false);
-                }}
-              >
-                {item.label}
-              </button>
-            ))}
-          </div>
+          createPortal(
+            <div
+              ref={menuRef}
+              id={menuId}
+              role="menu"
+              className="pds-split-button__menu"
+              data-align={menuAlign}
+              style={menuStyle ?? undefined}
+            >
+              {menuItems?.map((item) => (
+                <button
+                  key={item.value}
+                  type="button"
+                  role="menuitem"
+                  className="pds-split-button__menu-item"
+                  disabled={item.disabled}
+                  onClick={() => {
+                    if (item.disabled) return;
+                    onMenuSelect?.(item);
+                    setMenuOpen(false);
+                  }}
+                >
+                  {item.label}
+                </button>
+              ))}
+            </div>,
+            document.body
+          )
         )}
       </span>
     </div>

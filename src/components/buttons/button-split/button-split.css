@@ -1,8 +1,6 @@
 .pds-split-button {
   align-items: center;
   display: inline-flex;
-  overflow: visible;
-  position: relative;
 }
 
 .pds-split-button__item {
@@ -12,7 +10,6 @@
 
 .pds-split-button__icon-wrap {
   display: inline-flex;
-  overflow: visible;
   position: relative;
 }
 
@@ -83,20 +80,10 @@
   box-shadow: 0 10px 24px rgba(38, 50, 56, 0.14);
   display: flex;
   flex-direction: column;
-  margin-top: 6px;
   min-width: 160px;
   padding: 4px;
   position: absolute;
-  top: 100%;
   z-index: 5;
-}
-
-.pds-split-button__menu[data-align='left'] {
-  left: 0;
-}
-
-.pds-split-button__menu[data-align='right'] {
-  right: 0;
 }
 
 .pds-split-button__menu-item {

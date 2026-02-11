@@ -42,16 +42,8 @@ const meta: Meta<typeof SplitButton> = {
           'For icon-only actions, provide `splitAriaLabel` for accessibility.',
         ].join('\n'),
       },
-      canvas: { className: 'pds-docs-overflow' },
     },
   },
-  decorators: [
-    (Story) => (
-      <div style={{ overflow: 'visible', padding: 24 }}>
-        <Story />
-      </div>
-    ),
-  ],
   args: {
     children: 'Split Button',
     type: 'primary',

@@ -15,7 +15,7 @@ const meta: Meta<typeof Button> = {
   component: Button,
   tags: ['autodocs'],
   parameters: {
-    layout: 'fullscreen',
+    layout: 'centered',
     docs: {
       description: {
         component: [
@@ -41,7 +41,7 @@ const meta: Meta<typeof Button> = {
           '```',
         ].join('\n'),
       },
-      canvas: { layout: 'fullscreen', sourceState: 'none' },
+      canvas: { layout: 'centered', sourceState: 'none' },
     },
     controls: {
       sort: 'none',

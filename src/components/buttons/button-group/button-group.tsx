@@ -69,6 +69,8 @@ export function ButtonGroup({
     return cloneElement(child, { ...nextProps, key: child.key ?? index });
   });
 
+  const outlined = outline !== false;
+
   return (
     <div
       {...rest}
@@ -76,7 +78,14 @@ export function ButtonGroup({
       data-outline={outline ? 'true' : 'false'}
       className={['pds-button-group', className].filter(Boolean).join(' ')}
     >
-      {renderedItems}
+      {renderedItems.map((child, index) => (
+        <span key={child.key ?? index} className="pds-button-group__item">
+          {child}
+          {!outlined && index < renderedItems.length - 1 && (
+            <span className="pds-button-group__divider" aria-hidden="true" />
+          )}
+        </span>
+      ))}
     </div>
   );
 }

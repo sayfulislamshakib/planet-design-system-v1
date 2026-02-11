@@ -66,3 +66,16 @@ p {
   padding-top: 32px;
   padding-bottom: 32px;
 }
+
+.sbdocs .pds-docs-overflow,
+.sbdocs .pds-docs-overflow > * {
+  overflow: visible !important;
+}
+
+.sbdocs .docs-story,
+.sbdocs .docs-story > div,
+.sbdocs .docs-story > div > div,
+.sbdocs .sbdocs-preview,
+.sbdocs .sbdocs-preview > div {
+  overflow: visible !important;
+}

@@ -26,6 +26,7 @@ const meta: Meta<typeof Radio> = {
     children: 'Radio',
     size: 'md',
     disabled: false,
+    state: 'default',
   },
   argTypes: {
     children: {
@@ -38,6 +39,10 @@ const meta: Meta<typeof Radio> = {
     },
     disabled: {
       control: 'boolean',
+    },
+    state: {
+      control: 'select',
+      options: ['default', 'error'],
     },
   },
 };
@@ -57,6 +62,12 @@ export const Checked: Story = {
 export const Disabled: Story = {
   args: {
     disabled: true,
+  },
+};
+
+export const Error: Story = {
+  args: {
+    state: 'error',
   },
 };
 

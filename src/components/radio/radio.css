@@ -1,0 +1,97 @@
+.pds-radio {
+  --radio-size: 24px;
+  --radio-dot-size: 10px;
+  --radio-border: var(--pds-color-border, #cfd8dc);
+  --radio-bg: var(--pds-color-surface, #ffffff);
+  --radio-checked: var(--pds-color-primary, #4caf4f);
+  --radio-focus: #0b3fdb;
+  --radio-label: var(--pds-color-text, #263238);
+  --radio-label-disabled: var(--pds-color-text-subtle, #455a64);
+
+  align-items: center;
+  color: var(--radio-label);
+  cursor: pointer;
+  display: inline-flex;
+  font-family: var(--pds-font-body);
+  font-size: 14px;
+  gap: 8px;
+  line-height: 20px;
+  position: relative;
+}
+
+.pds-radio[data-size='sm'] {
+  --radio-size: 20px;
+  --radio-dot-size: 8px;
+  font-size: 13px;
+  line-height: 18px;
+}
+
+.pds-radio__input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+  pointer-events: none;
+}
+
+.pds-radio__control {
+  width: var(--radio-size);
+  height: var(--radio-size);
+  border-radius: 999px;
+  border: 1.5px solid var(--radio-border);
+  background: var(--radio-bg);
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: background-color 140ms ease, border-color 140ms ease;
+}
+
+.pds-radio__control::after {
+  content: '';
+  width: var(--radio-dot-size);
+  height: var(--radio-dot-size);
+  border-radius: 999px;
+  background: #ffffff;
+  transform: scale(0);
+  transition: transform 120ms ease;
+}
+
+.pds-radio__input:checked + .pds-radio__control {
+  background: var(--radio-checked);
+  border-color: var(--radio-checked);
+}
+
+.pds-radio__input:checked + .pds-radio__control::after {
+  transform: scale(1);
+}
+
+.pds-radio__input:focus-visible + .pds-radio__control {
+  outline: 2px solid var(--radio-focus);
+  outline-offset: 2px;
+}
+
+.pds-radio:hover .pds-radio__control {
+  border-color: var(--radio-checked);
+}
+
+.pds-radio[data-disabled='true'] {
+  cursor: not-allowed;
+  color: var(--radio-label-disabled);
+}
+
+.pds-radio[data-disabled='true'] .pds-radio__control {
+  background: var(--pds-color-surface-3, #eceff1);
+  border-color: var(--pds-color-border, #cfd8dc);
+}
+
+.pds-radio[data-disabled='true'] .pds-radio__control::after {
+  background: #ffffff;
+}
+
+.pds-radio__label {
+  display: inline-flex;
+  align-items: center;
+}

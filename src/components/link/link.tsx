@@ -40,6 +40,7 @@ export function Link({
   rightIconName,
   className,
   onClick,
+  onKeyDown,
   children,
   href,
   target,
@@ -50,7 +51,8 @@ export function Link({
   const resolvedOnClick = typeof onClick === 'function' ? onClick : undefined;
   const resolvedDisabled = state === 'disabled';
   const resolvedHref = resolvedDisabled ? undefined : href;
-  const resolvedTabIndex = resolvedDisabled ? -1 : tabIndex;
+  const resolvedTabIndex =
+    resolvedDisabled ? -1 : tabIndex ?? (!resolvedHref && resolvedOnClick ? 0 : undefined);
   const resolvedRel = target === '_blank' && !rel ? 'noreferrer noopener' : rel;
 
   const resolveIconComponent = (iconName?: string): ComponentType<IconBaseProps> => {
@@ -62,6 +64,14 @@ export function Link({
 
   const LeftIconComponent = resolveIconComponent(leftIconName);
   const RightIconComponent = resolveIconComponent(rightIconName);
+  const handleKeyDown: LinkProps['onKeyDown'] = (event) => {
+    onKeyDown?.(event);
+    if (event.defaultPrevented) return;
+    if (event.key === 'Enter' && !resolvedHref) {
+      event.preventDefault();
+      event.currentTarget.click();
+    }
+  };
 
   return (
     <a
@@ -70,6 +80,7 @@ export function Link({
       target={target}
       rel={resolvedRel}
       onClick={resolvedOnClick}
+      onKeyDown={handleKeyDown}
       tabIndex={resolvedTabIndex}
       aria-disabled={resolvedDisabled ? 'true' : undefined}
       className={['pds-link', className].filter(Boolean).join(' ')}

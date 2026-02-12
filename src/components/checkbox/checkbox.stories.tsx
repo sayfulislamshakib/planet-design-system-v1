@@ -26,7 +26,9 @@ const meta: Meta<typeof Checkbox> = {
     children: 'Checkbox',
     size: 'md',
     disabled: false,
+    type: 'default',
     state: 'default',
+    indeterminate: false,
   },
   argTypes: {
     children: {
@@ -43,9 +45,13 @@ const meta: Meta<typeof Checkbox> = {
     indeterminate: {
       control: 'boolean',
     },
-    state: {
+    type: {
       control: 'select',
       options: ['default', 'error'],
+    },
+    state: {
+      control: 'select',
+      options: ['default', 'hover', 'pressed', 'focus', 'disabled'],
     },
   },
 };
@@ -76,7 +82,7 @@ export const Disabled: Story = {
 
 export const Error: Story = {
   args: {
-    state: 'error',
+    type: 'error',
   },
 };
 

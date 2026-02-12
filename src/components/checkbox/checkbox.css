@@ -2,14 +2,15 @@
   --checkbox-size: 24px;
   --checkbox-check-width: 9px;
   --checkbox-check-height: 14px;
-  --checkbox-indeterminate-width: 12px;
   --checkbox-unchecked-mask: url("data:image/svg+xml;utf8,%3Csvg%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cmask%20id%3D%22mask0_12200_5735%22%20style%3D%22mask-type%3Aalpha%22%20maskUnits%3D%22userSpaceOnUse%22%20x%3D%220%22%20y%3D%220%22%20width%3D%2224%22%20height%3D%2224%22%3E%3Crect%20width%3D%2224%22%20height%3D%2224%22%20fill%3D%22%23D9D9D9%22%2F%3E%3C%2Fmask%3E%3Cg%20mask%3D%22url(%23mask0_12200_5735)%22%3E%3Cpath%20d%3D%22M5%2021C4.45%2021%203.97917%2020.8042%203.5875%2020.4125C3.19583%2020.0208%203%2019.55%203%2019V5C3%204.45%203.19583%203.97917%203.5875%203.5875C3.97917%203.19583%204.45%203%205%203H19C19.55%203%2020.0208%203.19583%2020.4125%203.5875C20.8042%203.97917%2021%204.45%2021%205V19C21%2019.55%2020.8042%2020.0208%2020.4125%2020.4125C20.0208%2020.8042%2019.55%2021%2019%2021H5ZM5%2019H19V5H5V19Z%22%20fill%3D%22black%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
   --checkbox-check-mask: url("data:image/svg+xml;utf8,%3Csvg%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M10.6%2013.4L8.45%2011.25C8.26667%2011.0667%208.03333%2010.975%207.75%2010.975C7.46667%2010.975%207.23333%2011.0667%207.05%2011.25C6.86667%2011.4333%206.775%2011.6667%206.775%2011.95C6.775%2012.2333%206.86667%2012.4667%207.05%2012.65L9.9%2015.5C10.1%2015.7%2010.3333%2015.8%2010.6%2015.8C10.8667%2015.8%2011.1%2015.7%2011.3%2015.5L16.95%209.85C17.1333%209.66667%2017.225%209.43333%2017.225%209.15C17.225%208.86667%2017.1333%208.63333%2016.95%208.45C16.7667%208.26667%2016.5333%208.175%2016.25%208.175C15.9667%208.175%2015.7333%208.26667%2015.55%208.45L10.6%2013.4ZM5%2021C4.45%2021%203.97917%2020.8042%203.5875%2020.4125C3.19583%2020.0208%203%2019.55%203%2019V5C3%204.45%203.19583%203.97917%203.5875%203.5875C3.97917%203.19583%204.45%203%205%203H19C19.55%203%2020.0208%203.19583%2020.4125%203.5875C20.8042%203.97917%2021%204.45%2021%205V19C21%2019.55%2020.8042%2020.0208%2020.4125%2020.4125C20.0208%2020.8042%2019.55%2021%2019%2021H5Z%22%20fill%3D%22black%22%2F%3E%3C%2Fsvg%3E");
+  --checkbox-indeterminate-mask: url("data:image/svg+xml;utf8,%3Csvg%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M8%2013H16C16.2833%2013%2016.5208%2012.9042%2016.7125%2012.7125C16.9042%2012.5208%2017%2012.2833%2017%2012C17%2011.7167%2016.9042%2011.4792%2016.7125%2011.2875C16.5208%2011.0958%2016.2833%2011%2016%2011H8C7.71667%2011%207.47917%2011.0958%207.2875%2011.2875C7.09583%2011.4792%207%2011.7167%207%2012C7%2012.2833%207.09583%2012.5208%207.2875%2012.7125C7.47917%2012.9042%207.71667%2013%208%2013ZM5%2021C4.45%2021%203.97917%2020.8042%203.5875%2020.4125C3.19583%2020.0208%203%2019.55%203%2019V5C3%204.45%203.19583%203.97917%203.5875%203.5875C3.97917%203.19583%204.45%203%205%203H19C19.55%203%2020.0208%203.19583%2020.4125%203.5875C20.8042%203.97917%2021%204.45%2021%205V19C21%2019.55%2020.8042%2020.0208%2020.4125%2020.4125C20.0208%2020.8042%2019.55%2021%2019%2021H5Z%22%20fill%3D%22black%22%2F%3E%3C%2Fsvg%3E");
   --checkbox-radius: var(--pds-radius-xs, 2px);
   --checkbox-border: var(--pds-color-border, #cfd8dc);
   --checkbox-bg: var(--pds-color-surface, #ffffff);
   --checkbox-checked: var(--pds-color-primary, #4caf4f);
   --checkbox-checked-color: var(--colors-button-bg-filled-primary-default, #4caf4f);
+  --checkbox-indeterminate-color: var(--checkbox-checked-color);
   --checkbox-unchecked-color: var(--colors-button-content-text-transparent-default, #263238);
   --checkbox-mask: var(--checkbox-unchecked-mask);
   --checkbox-mask-color: var(--checkbox-unchecked-color);
@@ -29,7 +30,7 @@
   line-height: 20px;
 }
 
-.pds-checkbox[data-state='error'] {
+.pds-checkbox[data-type='error'] {
   --checkbox-checked-color: var(--colors-button-bg-filled-error-default, #f44236);
   --checkbox-unchecked-color: var(--colors-button-content-text-outline-error-default, #f44236);
   --checkbox-label: var(--colors-button-content-text-outline-error-default, #f44236);
@@ -40,7 +41,6 @@
   --checkbox-size: 20px;
   --checkbox-check-width: 8px;
   --checkbox-check-height: 12px;
-  --checkbox-indeterminate-width: 10px;
   font-size: 13px;
   line-height: 18px;
 }
@@ -72,7 +72,7 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  background-color: var(--checkbox-hover-bg);
+  background-color: var(--checkbox-halo-bg, var(--checkbox-hover-bg));
   border-radius: 999px;
   opacity: 0;
   transition: opacity 140ms ease;
@@ -118,36 +118,14 @@
   transition: none;
 }
 
-.pds-checkbox__control::after {
-  content: '';
-  width: var(--checkbox-indeterminate-width);
-  height: 0;
-  border-bottom: 2px solid #ffffff;
-  opacity: 0;
-  transform: scale(0);
-  transform-origin: center;
-  transition: transform 120ms ease, opacity 120ms ease;
-}
-
 .pds-checkbox__input:checked + .pds-checkbox__halo .pds-checkbox__control {
   --checkbox-mask: var(--checkbox-check-mask);
   --checkbox-mask-color: var(--checkbox-checked-color);
 }
 
-.pds-checkbox__input:checked + .pds-checkbox__halo .pds-checkbox__control::after {
-  opacity: 0;
-  transform: scale(0);
-}
-
 .pds-checkbox__input:indeterminate + .pds-checkbox__halo .pds-checkbox__control {
-  background: var(--checkbox-checked);
-  -webkit-mask-image: none;
-  mask-image: none;
-}
-
-.pds-checkbox__input:indeterminate + .pds-checkbox__halo .pds-checkbox__control::after {
-  opacity: 1;
-  transform: scale(1);
+  --checkbox-mask: var(--checkbox-indeterminate-mask);
+  --checkbox-mask-color: var(--checkbox-indeterminate-color);
 }
 
 .pds-checkbox__input:focus-visible + .pds-checkbox__halo::before {
@@ -162,6 +140,23 @@
   opacity: 1;
 }
 
+.pds-checkbox[data-state='hover'] .pds-checkbox__halo::before {
+  opacity: 1;
+}
+
+.pds-checkbox[data-state='pressed'] .pds-checkbox__halo::before {
+  opacity: 1;
+  --checkbox-halo-bg: var(--colors-button-bg-transparent-pressed, #00000014);
+}
+
+.pds-checkbox[data-state='focus'] .pds-checkbox__halo::before {
+  opacity: 1;
+}
+
+.pds-checkbox[data-state='focus'] .pds-checkbox__halo::after {
+  opacity: 1;
+}
+
 .pds-checkbox[data-disabled='true'] {
   cursor: not-allowed;
   color: var(--checkbox-label-disabled);
@@ -171,10 +166,6 @@
   background: var(--pds-color-surface-3, #eceff1);
   -webkit-mask-image: none;
   mask-image: none;
-}
-
-.pds-checkbox[data-disabled='true'] .pds-checkbox__control::after {
-  border-color: #ffffff;
 }
 
 .pds-checkbox__label {

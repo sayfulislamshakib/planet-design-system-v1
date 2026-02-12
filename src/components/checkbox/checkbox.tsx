@@ -4,16 +4,19 @@ import './checkbox.css';
 
 export type CheckboxSize = 'sm' | 'md';
 
-export type CheckboxState = 'default' | 'error';
+export type CheckboxType = 'default' | 'error';
+export type CheckboxState = 'default' | 'hover' | 'pressed' | 'focus' | 'disabled';
 
 export type CheckboxProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'type' | 'size'> & {
   size?: CheckboxSize;
+  type?: CheckboxType;
   state?: CheckboxState;
   indeterminate?: boolean;
 };
 
 export function Checkbox({
   size = 'md',
+  type = 'default',
   state = 'default',
   indeterminate = false,
   className,
@@ -39,19 +42,22 @@ export function Checkbox({
     }
   }, [indeterminate]);
 
+  const resolvedDisabled = disabled || state === 'disabled';
+
   return (
     <label
       className={['pds-checkbox', className].filter(Boolean).join(' ')}
       data-size={size}
+      data-type={type}
       data-state={state}
-      data-disabled={disabled ? 'true' : 'false'}
+      data-disabled={resolvedDisabled ? 'true' : 'false'}
     >
       <input
         {...rest}
         ref={inputRef}
         type="checkbox"
         className="pds-checkbox__input"
-        disabled={disabled}
+        disabled={resolvedDisabled}
         onKeyDown={handleKeyDown}
       />
       <span className="pds-checkbox__halo" aria-hidden="true">

@@ -1,4 +1,5 @@
-﻿import '../src/styles/global.css';
+import '../src/styles/global.css';
+import './storybook.css';
 import type { Preview } from '@storybook/react-vite'
 import { useEffect } from 'react';
 
@@ -64,3 +65,4 @@ const preview: Preview = {
 };
 
 export default preview;
+

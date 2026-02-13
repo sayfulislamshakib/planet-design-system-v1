@@ -282,6 +282,25 @@
 
   --pds-color-focus: rgba(76, 175, 79, 0.25);
 
+  --colors-tooltip-bg-dark: #212121;
+  --colors-tooltip-bg-light: #ffffff;
+  --colors-tooltip-content-dark: #ffffff;
+  --colors-tooltip-content-light: #455a64;
+
+  --dimension-tooltip-radius: 4px;
+  --dimension-tooltip-max-width: 216px;
+  --dimension-tooltip-arrow-size: 6px;
+  --tooltip-padding-inline: 8px;
+  --tooltip-padding-block: 4px;
+  --tooltip-label-padding-block: 2px;
+  --tooltip-size-sm-font-size: 12px;
+  --tooltip-size-sm-line-height: 18px;
+  --tooltip-size-md-font-size: 13px;
+  --tooltip-size-md-line-height: 20px;
+  --tooltip-size-lg-font-size: 14px;
+  --tooltip-size-lg-line-height: 20px;
+  --elevation-tooltip: 0 1px 3px rgba(0, 0, 0, 0.06), 0 4px 8px rgba(0, 0, 0, 0.04);
+
   --pds-radius-xs: calc(var(--dimension-radius-sm) / 2);
   --pds-radius-sm: var(--dimension-radius-sm);
   --pds-radius-md: calc(var(--dimension-radius-sm) * 2);

@@ -1,0 +1,138 @@
+.pds-tooltip-root {
+  display: inline-flex;
+  position: relative;
+  width: fit-content;
+}
+
+.pds-tooltip {
+  --tooltip-bg: var(--colors-tooltip-bg-dark, #212121);
+  --tooltip-text: var(--colors-tooltip-content-dark, #ffffff);
+  --tooltip-font-size: var(--tooltip-size-sm-font-size, 12px);
+  --tooltip-line-height: var(--tooltip-size-sm-line-height, 18px);
+  --tooltip-padding-x: var(--tooltip-padding-inline, 8px);
+  --tooltip-padding-y: var(--tooltip-padding-block, 4px);
+  --tooltip-radius: var(--dimension-tooltip-radius, 4px);
+  --tooltip-max-width: var(--dimension-tooltip-max-width, 216px);
+  --tooltip-arrow-size: var(--dimension-tooltip-arrow-size, 6px);
+
+  align-items: center;
+  background: var(--tooltip-bg);
+  border-radius: var(--tooltip-radius);
+  box-shadow: var(--elevation-tooltip, 0 1px 3px rgba(0, 0, 0, 0.06), 0 4px 8px rgba(0, 0, 0, 0.04));
+  box-sizing: border-box;
+  color: var(--tooltip-text);
+  display: inline-flex;
+  font-family: var(--pds-font-body, 'Inter', sans-serif);
+  font-size: var(--tooltip-font-size);
+  font-weight: 400;
+  justify-content: center;
+  line-height: var(--tooltip-line-height);
+  width: max-content;
+  max-width: var(--tooltip-max-width);
+  padding: var(--tooltip-padding-y) var(--tooltip-padding-x);
+  position: relative;
+}
+
+.pds-tooltip__content {
+  display: block;
+  margin: 0;
+  overflow-wrap: break-word;
+  max-width: 100%;
+  width: auto;
+  word-break: normal;
+  white-space: normal;
+}
+
+.pds-tooltip__arrow {
+  display: none;
+  height: 0;
+  pointer-events: none;
+  position: absolute;
+  width: 0;
+}
+
+.pds-tooltip[data-color='light'] {
+  --tooltip-bg: var(--colors-tooltip-bg-light, #ffffff);
+  --tooltip-text: var(--colors-tooltip-content-light, #455a64);
+}
+
+.pds-tooltip[data-size='md'] {
+  --tooltip-font-size: var(--tooltip-size-md-font-size, 13px);
+  --tooltip-line-height: var(--tooltip-size-md-line-height, 20px);
+}
+
+.pds-tooltip[data-size='lg'] {
+  --tooltip-font-size: var(--tooltip-size-lg-font-size, 14px);
+  --tooltip-line-height: var(--tooltip-size-lg-line-height, 20px);
+}
+
+.pds-tooltip[data-type='label'] {
+  --tooltip-padding-y: var(--tooltip-label-padding-block, 2px);
+}
+
+.pds-tooltip[data-type='regular'] .pds-tooltip__arrow {
+  display: block;
+}
+
+.pds-tooltip[data-type='regular'][data-side='top'] .pds-tooltip__arrow {
+  border-left: var(--tooltip-arrow-size) solid transparent;
+  border-right: var(--tooltip-arrow-size) solid transparent;
+  border-top: var(--tooltip-arrow-size) solid var(--tooltip-bg);
+  top: 100%;
+}
+
+.pds-tooltip[data-type='regular'][data-side='bottom'] .pds-tooltip__arrow {
+  border-bottom: var(--tooltip-arrow-size) solid var(--tooltip-bg);
+  border-left: var(--tooltip-arrow-size) solid transparent;
+  border-right: var(--tooltip-arrow-size) solid transparent;
+  bottom: 100%;
+}
+
+.pds-tooltip[data-type='regular'][data-side='left'] .pds-tooltip__arrow {
+  border-bottom: var(--tooltip-arrow-size) solid transparent;
+  border-left: var(--tooltip-arrow-size) solid var(--tooltip-bg);
+  border-top: var(--tooltip-arrow-size) solid transparent;
+  left: 100%;
+}
+
+.pds-tooltip[data-type='regular'][data-side='right'] .pds-tooltip__arrow {
+  border-bottom: var(--tooltip-arrow-size) solid transparent;
+  border-right: var(--tooltip-arrow-size) solid var(--tooltip-bg);
+  border-top: var(--tooltip-arrow-size) solid transparent;
+  right: 100%;
+}
+
+.pds-tooltip[data-floating='false'][data-type='regular'][data-side='top'] .pds-tooltip__arrow,
+.pds-tooltip[data-floating='false'][data-type='regular'][data-side='bottom'] .pds-tooltip__arrow {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.pds-tooltip[data-floating='false'][data-type='regular'][data-side='left'] .pds-tooltip__arrow,
+.pds-tooltip[data-floating='false'][data-type='regular'][data-side='right'] .pds-tooltip__arrow {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.pds-tooltip[data-floating='true'] .pds-tooltip__arrow {
+  transform: none;
+}
+
+.pds-tooltip[data-floating='true'] {
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+  z-index: 1000;
+  transition: opacity 140ms ease;
+}
+
+.pds-tooltip[data-floating='true'][data-open='true'] {
+  opacity: 1;
+  visibility: visible;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pds-tooltip[data-floating='true'] {
+    transition: none;
+  }
+}

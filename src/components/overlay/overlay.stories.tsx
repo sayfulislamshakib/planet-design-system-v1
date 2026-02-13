@@ -75,12 +75,12 @@ const meta: Meta<typeof Overlay> = {
     inverse: {
       control: 'boolean',
       description: 'Switches to light overlay color for dark surfaces.',
-      table: { defaultValue: { summary: false } },
+      table: { defaultValue: { summary: 'false' } },
     },
     blur: {
       control: 'boolean',
       description: 'Adds backdrop blur behind the overlay.',
-      table: { defaultValue: { summary: false } },
+      table: { defaultValue: { summary: 'false' } },
     },
   },
   render: (args) => (

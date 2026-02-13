@@ -98,12 +98,12 @@ const meta: Meta<typeof Tooltip> = {
     showDelay: {
       control: 'number',
       description: 'Delay before opening (ms).',
-      table: { defaultValue: { summary: 120 } },
+      table: { defaultValue: { summary: '120' } },
     },
     hideDelay: {
       control: 'number',
       description: 'Delay before closing (ms).',
-      table: { defaultValue: { summary: 0 } },
+      table: { defaultValue: { summary: '0' } },
     },
     open: { table: { disable: true } },
     defaultOpen: { table: { disable: true } },

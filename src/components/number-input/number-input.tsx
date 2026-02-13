@@ -6,7 +6,7 @@ import type {
   KeyboardEvent as ReactKeyboardEvent,
   MouseEvent,
 } from 'react';
-import { useCallback, useEffect, useId, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useId, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { autoUpdate } from '@floating-ui/react-dom';
 import { IconAdd, IconMenuPositionDown, IconRemove } from '@justgo/planet-icons';
 import { createPortal } from 'react-dom';
@@ -122,6 +122,7 @@ export function NumberInput({
   const menuContainerRef = useRef<HTMLDivElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
   const menuScrollFrameRef = useRef<number | null>(null);
+  const desiredMenuScrollTopRef = useRef(0);
   const dropdownId = useId();
   const isControlled = value !== undefined;
   const initialValue = normalize(defaultValue, min, max);
@@ -204,23 +205,69 @@ export function NumberInput({
     const menuElement = menuContainerRef.current;
     if (!middleElement || !menuElement) return;
 
+    const viewportPadding = 8;
+    const maxDefaultRows = 10;
     const middleRect = middleElement.getBoundingClientRect();
     const rootStyle = rootRef.current
       ? window.getComputedStyle(rootRef.current)
       : window.getComputedStyle(middleElement);
+    const availableViewportWidth = Math.max(0, window.innerWidth - viewportPadding * 2);
+    const availableViewportHeight = Math.max(0, window.innerHeight - viewportPadding * 2);
+    const rowHeight = Math.max(1, Math.round(middleRect.height));
+    const maxRowsByViewport = Math.max(1, Math.floor(availableViewportHeight / rowHeight));
+    const maxRowsByOptions = Math.max(1, resolvedDropdownOptions.length || maxDefaultRows);
+    const visibleRows = Math.max(1, Math.min(maxDefaultRows, maxRowsByViewport, maxRowsByOptions));
+    const desiredMenuWidth = Math.max(middleRect.width + 2, menuElement.offsetWidth || 0);
+    const desiredMenuHeight = rowHeight * visibleRows;
+    const menuWidth = Math.min(desiredMenuWidth, availableViewportWidth || desiredMenuWidth);
+    const menuHeight = Math.min(desiredMenuHeight, availableViewportHeight || desiredMenuHeight);
+    const clampCenter = (value: number, size: number, maxLimit: number) => {
+      const minCenter = viewportPadding + size / 2;
+      const maxCenter = maxLimit - viewportPadding - size / 2;
+      if (minCenter > maxCenter) {
+        return maxLimit / 2;
+      }
+      return Math.min(maxCenter, Math.max(minCenter, value));
+    };
+
+    const middleCenterY = middleRect.top + middleRect.height / 2;
+    const selectedIndex = resolvedDropdownOptions.findIndex((option) =>
+      isSameNumber(option, selectedDropdownValue),
+    );
+    const targetIndex = activeOptionIndex ?? selectedIndex;
+    const targetRowCenter = targetIndex >= 0 ? targetIndex * rowHeight + rowHeight / 2 : menuHeight / 2;
+    const optionCount = Math.max(1, resolvedDropdownOptions.length);
+    const contentHeight = optionCount * rowHeight;
+    const maxScrollTop = Math.max(0, contentHeight - menuHeight);
+    const centeredScrollTop = targetRowCenter - menuHeight / 2;
+    const clampedScrollTop = Math.min(maxScrollTop, Math.max(0, centeredScrollTop));
+    desiredMenuScrollTopRef.current = clampedScrollTop;
+    const targetCenterInMenu = targetRowCenter - clampedScrollTop;
+    const minTop = viewportPadding;
+    const maxTop = window.innerHeight - viewportPadding - menuHeight;
+    const menuTop =
+      minTop <= maxTop
+        ? Math.min(maxTop, Math.max(minTop, middleCenterY - targetCenterInMenu))
+        : (window.innerHeight - menuHeight) / 2;
+
+    const centerX = clampCenter(middleRect.left + middleRect.width / 2, menuWidth, window.innerWidth);
+    const centerY = menuTop + menuHeight / 2;
     const readVar = (name: string) => {
       const value = rootStyle.getPropertyValue(name).trim();
       return value || undefined;
     };
 
     setDropdownPositionStyle({
-      left: `${middleRect.left + middleRect.width / 2}px`,
+      height: `${menuHeight}px`,
+      left: `${centerX}px`,
       fontFamily: rootStyle.fontFamily,
       fontSize: rootStyle.fontSize,
       fontWeight: rootStyle.fontWeight,
       lineHeight: rootStyle.lineHeight,
-      minWidth: `${middleRect.width + 2}px`,
-      top: `${middleRect.top + middleRect.height / 2}px`,
+      maxHeight: `${menuHeight}px`,
+      minWidth: `${menuWidth}px`,
+      top: `${centerY}px`,
+      width: `${menuWidth}px`,
       '--number-input-bg': readVar('--number-input-bg'),
       '--number-input-border': readVar('--number-input-border'),
       '--number-input-content': readVar('--number-input-content'),
@@ -230,9 +277,9 @@ export function NumberInput({
       '--number-input-menu-selected-border': readVar('--number-input-menu-selected-border'),
       '--number-input-menu-selected-content': readVar('--number-input-menu-selected-content'),
     });
-  }, []);
+  }, [activeOptionIndex, resolvedDropdownOptions, selectedDropdownValue]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!dropdownOpen) return;
     const middleElement = middleRef.current;
     const menuElement = menuContainerRef.current;
@@ -242,23 +289,29 @@ export function NumberInput({
     return autoUpdate(middleElement, menuElement, updateDropdownPosition);
   }, [dropdownOpen, updateDropdownPosition]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!dropdownOpen) {
       stopAutoScroll();
+      const menuElement = menuRef.current;
+      if (menuElement) {
+        menuElement.style.paddingTop = '0px';
+        menuElement.style.paddingBottom = '0px';
+        menuElement.scrollTop = 0;
+      }
       return;
     }
-    const selector =
-      activeOptionIndex !== null
-        ? `.pds-number-input__menu-item[data-index="${activeOptionIndex}"]`
-        : '.pds-number-input__menu-item[data-selected="true"]';
-    const selectedItem = menuRef.current?.querySelector<HTMLButtonElement>(selector);
-    selectedItem?.scrollIntoView({ block: 'center' });
+    const menuElement = menuRef.current;
+    if (!menuElement) return;
+
+    menuElement.style.paddingTop = '0px';
+    menuElement.style.paddingBottom = '0px';
+    const maxScrollTop = Math.max(0, menuElement.scrollHeight - menuElement.clientHeight);
+    menuElement.scrollTop = Math.min(maxScrollTop, Math.max(0, desiredMenuScrollTopRef.current));
     window.requestAnimationFrame(updateMenuScrollState);
   }, [
-    activeOptionIndex,
     dropdownOpen,
-    resolvedDropdownOptions,
-    selectedDropdownValue,
+    dropdownPositionStyle.height,
+    dropdownPositionStyle.top,
     stopAutoScroll,
     updateMenuScrollState,
   ]);
@@ -431,18 +484,17 @@ export function NumberInput({
     if (resolvedDisabled) return;
     onDropdownClick?.(event);
     if (event.defaultPrevented) return;
-    setDropdownOpen((current) => {
-      const next = !current;
-      if (next) {
-        const initialIndex = selectedOptionIndex >= 0 ? selectedOptionIndex : 0;
-        setActiveOptionIndex(initialIndex);
-        window.requestAnimationFrame(() => {
-          inputRef.current?.focus();
-        });
-      } else {
-        setActiveOptionIndex(null);
-      }
-      return next;
+    if (dropdownOpen) {
+      setDropdownOpen(false);
+      setActiveOptionIndex(null);
+      return;
+    }
+
+    const initialIndex = selectedOptionIndex >= 0 ? selectedOptionIndex : 0;
+    setActiveOptionIndex(initialIndex);
+    setDropdownOpen(true);
+    window.requestAnimationFrame(() => {
+      inputRef.current?.focus();
     });
   };
 
@@ -543,7 +595,6 @@ export function NumberInput({
                     aria-selected={selected}
                     data-selected={selected ? 'true' : 'false'}
                     tabIndex={active ? 0 : -1}
-                    onFocus={() => setActiveOptionIndex(index)}
                     onClick={() => handleDropdownSelect(option)}
                   >
                     {option}

@@ -61,14 +61,50 @@ const meta: Meta<typeof Tooltip> = {
     hideDelay: 0,
   },
   argTypes: {
-    content: { control: 'text' },
-    size: { control: 'select', options: ['sm', 'md', 'lg'] },
-    color: { control: 'select', options: ['dark', 'light'] },
-    type: { control: 'select', options: ['regular', 'label'] },
-    placement: { control: 'select', options: ['top', 'right', 'bottom', 'left'] },
-    align: { control: 'select', options: ['start', 'center', 'end'] },
-    showDelay: { control: 'number' },
-    hideDelay: { control: 'number' },
+    content: {
+      control: 'text',
+      description: 'Tooltip text or node content.',
+    },
+    size: {
+      control: 'select',
+      options: ['sm', 'md', 'lg'],
+      description: 'Typography size of the tooltip content.',
+      table: { defaultValue: { summary: 'sm' } },
+    },
+    color: {
+      control: 'select',
+      options: ['dark', 'light'],
+      description: 'Color theme for tooltip background and text.',
+      table: { defaultValue: { summary: 'dark' } },
+    },
+    type: {
+      control: 'select',
+      options: ['regular', 'label'],
+      description: 'Tooltip type. `label` hides the arrow.',
+      table: { defaultValue: { summary: 'regular' } },
+    },
+    placement: {
+      control: 'select',
+      options: ['top', 'right', 'bottom', 'left'],
+      description: 'Preferred side relative to trigger.',
+      table: { defaultValue: { summary: 'top' } },
+    },
+    align: {
+      control: 'select',
+      options: ['start', 'center', 'end'],
+      description: 'Alignment along the selected side.',
+      table: { defaultValue: { summary: 'center' } },
+    },
+    showDelay: {
+      control: 'number',
+      description: 'Delay before opening (ms).',
+      table: { defaultValue: { summary: 120 } },
+    },
+    hideDelay: {
+      control: 'number',
+      description: 'Delay before closing (ms).',
+      table: { defaultValue: { summary: 0 } },
+    },
     open: { table: { disable: true } },
     defaultOpen: { table: { disable: true } },
     onOpenChange: { table: { disable: true } },
@@ -90,6 +126,13 @@ export default meta;
 type Story = StoryObj<typeof Tooltip>;
 
 export const Playground: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Interactive matrix for all supported placement and alignment combinations.',
+      },
+    },
+  },
   args: {
     content: 'This is a tool tip',
     size: 'md',

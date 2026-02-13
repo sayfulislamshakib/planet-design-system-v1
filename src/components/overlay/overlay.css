@@ -1,0 +1,16 @@
+.pds-overlay {
+  --overlay-bg: var(--colors-overlay-bg-default, rgba(38, 50, 56, 0.75));
+  --overlay-blur: var(--dimension-overlay-blur, 4px);
+
+  background: var(--overlay-bg);
+  display: block;
+}
+
+.pds-overlay[data-inverse='true'] {
+  --overlay-bg: var(--colors-overlay-bg-inverse, rgba(255, 255, 255, 0.75));
+}
+
+.pds-overlay[data-blur='true'] {
+  -webkit-backdrop-filter: blur(var(--overlay-blur));
+  backdrop-filter: blur(var(--overlay-blur));
+}

@@ -301,6 +301,10 @@
   --tooltip-size-lg-line-height: 20px;
   --elevation-tooltip: 0 1px 3px rgba(0, 0, 0, 0.06), 0 4px 8px rgba(0, 0, 0, 0.04);
 
+  --colors-overlay-bg-default: rgba(38, 50, 56, 0.75);
+  --colors-overlay-bg-inverse: rgba(255, 255, 255, 0.75);
+  --dimension-overlay-blur: 4px;
+
   --pds-radius-xs: calc(var(--dimension-radius-sm) / 2);
   --pds-radius-sm: var(--dimension-radius-sm);
   --pds-radius-md: calc(var(--dimension-radius-sm) * 2);

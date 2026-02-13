@@ -41,9 +41,11 @@ const meta: Meta<typeof Checkbox> = {
     },
     disabled: {
       control: 'boolean',
+      name: 'disabled?',
     },
     indeterminate: {
       control: 'boolean',
+      name: 'indeterminate?',
     },
     type: {
       control: 'select',

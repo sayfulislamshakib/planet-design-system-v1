@@ -1,6 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import type { CSSProperties } from 'react';
+import { Controls, Description, Primary, Stories, Title } from '@storybook/addon-docs/blocks';
 import { Overlay } from './overlay';
+import type { OverlayProps } from './overlay';
 
 const previewRoot: CSSProperties = {
   position: 'relative',
@@ -35,6 +37,19 @@ const previewOverlay: CSSProperties = {
   zIndex: 1,
 };
 
+type OverlayStoryArgs = Pick<OverlayProps, 'inverse' | 'blur'>;
+
+const renderOverlayPreview = (args: OverlayStoryArgs) => (
+  <div style={previewRoot}>
+    <div style={contentCard}>
+      Dialog host content
+      <br />
+      Background should be dimmed by overlay.
+    </div>
+    <Overlay {...args} style={previewOverlay} aria-label="Overlay preview" />
+  </div>
+);
+
 const meta: Meta<typeof Overlay> = {
   title: 'Components/Overlay',
   component: Overlay,
@@ -42,9 +57,19 @@ const meta: Meta<typeof Overlay> = {
   parameters: {
     layout: 'centered',
     controls: {
-      include: ['inverse', 'blur'],
+      expanded: true,
+      sort: 'none',
     },
     docs: {
+      page: () => (
+        <>
+          <Title />
+          <Description />
+          <Primary of="story" />
+          <Controls of="story" />
+          <Stories includePrimary={false} />
+        </>
+      ),
       description: {
         component: [
           'Overlay layer used above app content for dialogs, drawers, and modal states.',
@@ -74,31 +99,36 @@ const meta: Meta<typeof Overlay> = {
   argTypes: {
     inverse: {
       control: 'boolean',
+      name: 'inverse?',
       description: 'Switches to light overlay color for dark surfaces.',
-      table: { defaultValue: { summary: 'false' } },
+      table: { type: { summary: 'boolean' }, defaultValue: { summary: 'false' } },
     },
     blur: {
       control: 'boolean',
+      name: 'blur?',
       description: 'Adds backdrop blur behind the overlay.',
-      table: { defaultValue: { summary: 'false' } },
+      table: { type: { summary: 'boolean' }, defaultValue: { summary: 'false' } },
     },
+    className: { table: { disable: true } },
+    style: { table: { disable: true } },
+    id: { table: { disable: true } },
+    title: { table: { disable: true } },
+    role: { table: { disable: true } },
+    tabIndex: { table: { disable: true } },
+    onClick: { table: { disable: true } },
+    onMouseEnter: { table: { disable: true } },
+    onMouseLeave: { table: { disable: true } },
+    onFocus: { table: { disable: true } },
+    onBlur: { table: { disable: true } },
   },
-  render: (args) => (
-    <div style={previewRoot}>
-      <div style={contentCard}>
-        Dialog host content
-        <br />
-        Background should be dimmed by overlay.
-      </div>
-      <Overlay {...args} style={previewOverlay} aria-label="Overlay preview" />
-    </div>
-  ),
 };
 
 export default meta;
 type Story = StoryObj<typeof Overlay>;
 
-export const Playground: Story = {};
+export const Playground: Story = {
+  render: renderOverlayPreview,
+};
 
 export const Default: Story = {
   parameters: {
@@ -109,6 +139,7 @@ export const Default: Story = {
     },
   },
   args: { inverse: false, blur: false },
+  render: renderOverlayPreview,
 };
 
 export const Blur: Story = {
@@ -120,6 +151,7 @@ export const Blur: Story = {
     },
   },
   args: { inverse: false, blur: true },
+  render: renderOverlayPreview,
 };
 
 export const Inverse: Story = {
@@ -131,6 +163,7 @@ export const Inverse: Story = {
     },
   },
   args: { inverse: true, blur: false },
+  render: renderOverlayPreview,
 };
 
 export const InverseBlur: Story = {
@@ -142,4 +175,5 @@ export const InverseBlur: Story = {
     },
   },
   args: { inverse: true, blur: true },
+  render: renderOverlayPreview,
 };

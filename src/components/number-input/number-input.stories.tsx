@@ -51,6 +51,7 @@ const meta: Meta<typeof NumberInput> = {
     },
     dropdownIcon: {
       control: 'boolean',
+      name: 'dropdownIcon?',
       description: 'Shows the optional dropdown indicator/action.',
       table: { defaultValue: { summary: 'true' } },
     },
@@ -76,6 +77,7 @@ const meta: Meta<typeof NumberInput> = {
     },
     readOnly: {
       control: 'boolean',
+      name: 'readOnly?',
       description: 'If true, users cannot type into the middle input.',
       table: { defaultValue: { summary: 'false' } },
     },

@@ -39,6 +39,7 @@ const meta: Meta<typeof Radio> = {
     },
     disabled: {
       control: 'boolean',
+      name: 'disabled?',
     },
     state: {
       control: 'select',

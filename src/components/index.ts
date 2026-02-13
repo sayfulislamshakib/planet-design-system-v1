@@ -7,3 +7,4 @@ export * from './toggle';
 export * from './tooltip';
 export * from './overlay';
 export * from './number-input';
+export * from './input';

@@ -23,7 +23,7 @@
   --btn-border-width: 1px;
   --btn-border-width-focus: var(--btn-border-width);
   --btn-focus-ring-width: 0;
-  --btn-focus-ring-color: transparent;
+  --btn-focus-ring-color: var(--colors-_focus-ring-primary, #e8f5e9);
   --btn-padding-x: 16px;
   --btn-padding-y: 8px;
   --btn-font-size: 14px;
@@ -276,6 +276,7 @@
   --btn-icon-disabled: var(--colors-button-content-icon-disabled, #b0bec5);
   --btn-border-focus: var(--colors-button-border-filled-secondary-focused, #cfd8dc);
   --btn-border-width-focus: 2px;
+  --btn-focus-ring-color: var(--colors-_focus-ring-secondary, #eceff1);
 }
 
 .pds-button[data-variant='secondary'][data-outline='true'] {
@@ -317,6 +318,7 @@
   --btn-icon-disabled: var(--colors-button-content-icon-disabled, #b0bec5);
   --btn-border-focus: var(--colors-button-border-filled-error-focused, #ffcdd2);
   --btn-border-width-focus: 2px;
+  --btn-focus-ring-color: var(--colors-_focus-ring-error, #ffebee);
 }
 
 .pds-button[data-variant='danger'][data-outline='true'],
@@ -358,6 +360,7 @@
   --btn-icon-disabled: var(--colors-button-content-icon-disabled, #b0bec5);
   --btn-border-focus: var(--colors-button-border-filled-warning-focused, #fff9c4);
   --btn-border-width-focus: 2px;
+  --btn-focus-ring-color: var(--colors-_focus-ring-warning, #fffde7);
 }
 
 .pds-button[data-variant='warning'][data-outline='true'] {
@@ -398,6 +401,7 @@
   --btn-icon-disabled: var(--colors-button-content-icon-disabled, #b0bec5);
   --btn-border-focus: var(--colors-button-border-filled-info-focused, #bbdefb);
   --btn-border-width-focus: 2px;
+  --btn-focus-ring-color: var(--colors-_focus-ring-info, #e3f2fd);
 }
 
 .pds-button[data-variant='info'][data-outline='true'] {
@@ -438,6 +442,7 @@
   --btn-icon-disabled: var(--colors-button-content-icon-disabled, #b0bec5);
   --btn-border-focus: var(--colors-button-border-filled-success-focused, #c8e6c9);
   --btn-border-width-focus: 2px;
+  --btn-focus-ring-color: var(--colors-_focus-ring-success, #c8e6c9);
 }
 
 .pds-button[data-variant='success'][data-outline='true'] {
@@ -478,6 +483,7 @@
   --btn-icon-disabled: var(--colors-button-content-icon-disabled, #b0bec5);
   --btn-border-focus: var(--colors-button-border-filled-complementary-focused, #e1bee7);
   --btn-border-width-focus: 2px;
+  --btn-focus-ring-color: var(--colors-_focus-ring-complementary, #f3e5f5);
 }
 
 .pds-button[data-variant='complementary'][data-outline='true'] {
@@ -521,5 +527,5 @@
   --btn-border-pressed: transparent;
   --btn-border-focus: var(--colors-button-border-transparent-focused, #e8f5e9);
   --btn-focus-ring-width: 0;
-  --btn-focus-ring-color: transparent;
+  --btn-focus-ring-color: var(--colors-_focus-ring-primary, #e8f5e9);
 }

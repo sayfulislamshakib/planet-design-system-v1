@@ -1,15 +1,15 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import * as PlanetIcons from '@justgo/planet-icons';
-import { SplitButton } from './button-split';
+import { ButtonSplit } from './ButtonSplit';
 
 const iconOptions = Object.keys(PlanetIcons)
   .filter((key) => key.startsWith('Icon'))
   .sort();
 
-const meta: Meta<typeof SplitButton> = {
-  title: 'Components/ButtonSplit',
+const meta: Meta<typeof ButtonSplit> = {
+  title: 'Components/Buttons/Button Split',
   id: 'components-splitbutton',
-  component: SplitButton,
+  component: ButtonSplit,
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
@@ -21,22 +21,22 @@ const meta: Meta<typeof SplitButton> = {
           '## Usage',
           '',
           '```tsx',
-          "import { SplitButton } from 'planet-design-system-v1';",
+          "import { ButtonSplit } from 'planet-design-system-v1';",
           '',
-          '<SplitButton',
+          '<ButtonSplit',
           '  iconOnlyName="IconMenuPositionDown"',
           '  menuItems={[{ label: "Edit", value: "edit" }, { label: "Delete", value: "delete" }]}',
           '  onMenuSelect={(item) => console.log(item)}',
           '>',
           '  Pay Now',
-          '</SplitButton>',
+          '</ButtonSplit>',
           '```',
           '',
           '## Imports',
           '',
           '```tsx',
-          "import { SplitButton } from 'planet-design-system-v1';",
-          "import type { SplitButtonProps } from 'planet-design-system-v1';",
+          "import { ButtonSplit } from 'planet-design-system-v1';",
+          "import type { ButtonSplitProps } from 'planet-design-system-v1';",
           '```',
           '',
           'For icon-only actions, provide `splitAriaLabel` for accessibility.',
@@ -163,8 +163,8 @@ const meta: Meta<typeof SplitButton> = {
 
 export default meta;
 
-type Story = StoryObj<typeof SplitButton>;
+type Story = StoryObj<typeof ButtonSplit>;
 
-export const ButtonSplit: Story = {
-  name: 'ButtonSplit',
+export const ButtonSplitStory: Story = {
+  name: 'Button Split',
 };

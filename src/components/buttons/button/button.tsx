@@ -2,7 +2,7 @@ import type { ButtonHTMLAttributes, ComponentType } from 'react';
 import type { IconBaseProps } from '@justgo/planet-icons';
 import * as PlanetIcons from '@justgo/planet-icons';
 import { IconCloseStyleOutline } from '@justgo/planet-icons';
-import './button.css';
+import './Button.css';
 
 export type ButtonType =
   | 'primary'

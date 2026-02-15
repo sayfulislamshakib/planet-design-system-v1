@@ -1,14 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import * as PlanetIcons from '@justgo/planet-icons';
-import { Button } from '../button/button';
-import { ButtonGroup } from './button-group';
+import { Button } from '../Button/Button';
+import { ButtonGroup } from './ButtonGroup';
 
 const iconOptions = Object.keys(PlanetIcons)
   .filter((key) => key.startsWith('Icon'))
   .sort();
 
 const meta: Meta<typeof ButtonGroup> = {
-  title: 'Components/ButtonGroup',
+  title: 'Components/Buttons/Button Group',
   component: ButtonGroup,
   tags: ['autodocs'],
   parameters: {

@@ -1,7 +1,7 @@
 import type { HTMLAttributes, ReactElement } from 'react';
 import { Children, cloneElement, isValidElement } from 'react';
-import type { ButtonProps, ButtonSize, ButtonType } from '../button/button';
-import './button-group.css';
+import type { ButtonProps, ButtonSize, ButtonType } from '../Button/Button';
+import './ButtonGroup.css';
 
 type ButtonGroupChild = ReactElement<ButtonProps>;
 

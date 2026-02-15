@@ -1,9 +1,9 @@
 import type { CSSProperties } from 'react';
 import { useEffect, useId, useLayoutEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { Button } from '../button/button';
-import type { ButtonProps } from '../button/button';
-import './button-split.css';
+import { Button } from '../Button/Button';
+import type { ButtonProps } from '../Button/Button';
+import './ButtonSplit.css';
 
 export type SplitButtonMenuItem = {
   label: string;
@@ -11,14 +11,14 @@ export type SplitButtonMenuItem = {
   disabled?: boolean;
 };
 
-export type SplitButtonProps = ButtonProps & {
+export type ButtonSplitProps = ButtonProps & {
   onSplitClick?: ButtonProps['onClick'];
   splitAriaLabel?: string;
   menuItems?: SplitButtonMenuItem[];
   onMenuSelect?: (item: SplitButtonMenuItem) => void;
 };
 
-export function SplitButton(props: SplitButtonProps) {
+export function ButtonSplit(props: ButtonSplitProps) {
   const {
     children,
     className,
@@ -236,3 +236,7 @@ export function SplitButton(props: SplitButtonProps) {
     </div>
   );
 }
+
+// Backward-compatible alias for existing consumers.
+export const SplitButton = ButtonSplit;
+export type SplitButtonProps = ButtonSplitProps;

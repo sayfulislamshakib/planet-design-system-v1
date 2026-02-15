@@ -54,6 +54,25 @@
   pointer-events: none;
 }
 
+.pds-checkbox__tap-target {
+  width: var(--checkbox-size);
+  height: var(--checkbox-size);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 0;
+}
+
+.pds-checkbox__tap-target::before {
+  content: '';
+  position: absolute;
+  inset: -10px;
+  z-index: -1;
+  pointer-events: auto;
+  background: transparent;
+}
+
 .pds-checkbox__halo {
   width: var(--checkbox-size);
   height: var(--checkbox-size);
@@ -118,42 +137,42 @@
   transition: none;
 }
 
-.pds-checkbox__input:checked + .pds-checkbox__halo .pds-checkbox__control {
+.pds-checkbox__input:checked + .pds-checkbox__tap-target .pds-checkbox__control {
   --checkbox-mask: var(--checkbox-check-mask);
   --checkbox-mask-color: var(--checkbox-checked-color);
 }
 
-.pds-checkbox__input:indeterminate + .pds-checkbox__halo .pds-checkbox__control {
+.pds-checkbox__input:indeterminate + .pds-checkbox__tap-target .pds-checkbox__control {
   --checkbox-mask: var(--checkbox-indeterminate-mask);
   --checkbox-mask-color: var(--checkbox-indeterminate-color);
 }
 
-.pds-checkbox__input:focus-visible + .pds-checkbox__halo::before {
+.pds-checkbox__input:focus-visible + .pds-checkbox__tap-target .pds-checkbox__halo::before {
   opacity: 1;
 }
 
-.pds-checkbox__input:focus-visible + .pds-checkbox__halo::after {
+.pds-checkbox__input:focus-visible + .pds-checkbox__tap-target .pds-checkbox__halo::after {
   opacity: 1;
 }
 
-.pds-checkbox:not([data-disabled='true']) .pds-checkbox__halo:hover::before {
+.pds-checkbox:not([data-disabled='true']) .pds-checkbox__tap-target:hover .pds-checkbox__halo::before {
   opacity: 1;
 }
 
-.pds-checkbox[data-state='hover'] .pds-checkbox__halo::before {
+.pds-checkbox[data-state='hover'] .pds-checkbox__tap-target .pds-checkbox__halo::before {
   opacity: 1;
 }
 
-.pds-checkbox[data-state='pressed'] .pds-checkbox__halo::before {
+.pds-checkbox[data-state='pressed'] .pds-checkbox__tap-target .pds-checkbox__halo::before {
   opacity: 1;
   --checkbox-halo-bg: var(--colors-button-bg-transparent-pressed, #00000014);
 }
 
-.pds-checkbox[data-state='focus'] .pds-checkbox__halo::before {
+.pds-checkbox[data-state='focus'] .pds-checkbox__tap-target .pds-checkbox__halo::before {
   opacity: 1;
 }
 
-.pds-checkbox[data-state='focus'] .pds-checkbox__halo::after {
+.pds-checkbox[data-state='focus'] .pds-checkbox__tap-target .pds-checkbox__halo::after {
   opacity: 1;
 }
 
@@ -166,6 +185,10 @@
   background: var(--pds-color-surface-3, #eceff1);
   -webkit-mask-image: none;
   mask-image: none;
+}
+
+.pds-checkbox[data-disabled='true'] .pds-checkbox__tap-target::before {
+  pointer-events: none;
 }
 
 .pds-checkbox__label {

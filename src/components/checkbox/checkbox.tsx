@@ -60,8 +60,10 @@ export function Checkbox({
         disabled={resolvedDisabled}
         onKeyDown={handleKeyDown}
       />
-      <span className="pds-checkbox__halo" aria-hidden="true">
-        <span className="pds-checkbox__control" />
+      <span className="pds-checkbox__tap-target" aria-hidden="true">
+        <span className="pds-checkbox__halo">
+          <span className="pds-checkbox__control" />
+        </span>
       </span>
       {children && <span className="pds-checkbox__label">{children}</span>}
     </label>

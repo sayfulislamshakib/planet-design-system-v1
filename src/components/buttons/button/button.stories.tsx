@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { expect, fn, userEvent, within } from 'storybook/test';
 import { useArgs } from 'storybook/preview-api';
 import * as PlanetIcons from '@justgo/planet-icons';
-import { Button } from './button';
+import { Button } from './Button';
 
 const defaultOnClick = fn();
 const iconOptions = Object.keys(PlanetIcons)
@@ -11,7 +11,7 @@ const iconOptions = Object.keys(PlanetIcons)
   .sort();
 
 const meta: Meta<typeof Button> = {
-  title: 'Components/Button',
+  title: 'Components/Buttons/Button',
   component: Button,
   tags: ['autodocs'],
   parameters: {

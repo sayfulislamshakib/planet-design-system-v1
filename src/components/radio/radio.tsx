@@ -72,8 +72,10 @@ export function Radio({
         onClick={handleClick}
         onKeyDown={handleKeyDown}
       />
-      <span className="pds-radio__halo" aria-hidden="true">
-        <span className="pds-radio__control" />
+      <span className="pds-radio__tap-target" aria-hidden="true">
+        <span className="pds-radio__halo">
+          <span className="pds-radio__control" />
+        </span>
       </span>
       {children && <span className="pds-radio__label">{children}</span>}
     </label>

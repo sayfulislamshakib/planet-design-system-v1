@@ -63,9 +63,9 @@
 
 .pds-number-input[data-state='disable'],
 .pds-number-input[data-disabled='true'] {
-  --number-input-bg: var(--colors-number-input-bg-disabled, #eceff1);
-  --number-input-border: var(--colors-number-input-border-disabled, #cfd8dc);
-  --number-input-content: var(--colors-number-input-content-text-disabled, #b0bec5);
+  --number-input-bg: var(--colors-button-bg-disabled, #fafafa);
+  --number-input-border: var(--colors-button-border-disabled, #eceff1);
+  --number-input-content: var(--colors-button-content-text-disabled, #b0bec5);
 }
 
 .pds-number-input__action {
@@ -172,7 +172,10 @@
 }
 
 .pds-number-input__field:disabled {
+  -webkit-text-fill-color: currentColor;
+  color: inherit;
   cursor: not-allowed;
+  opacity: 1;
 }
 
 .pds-number-input__field::-webkit-outer-spin-button,

@@ -1,5 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { fn } from 'storybook/test';
+import * as PlanetIcons from '@justgo/planet-icons';
 import { ButtonAction } from './ButtonAction';
+
+const iconOptions = Object.keys(PlanetIcons)
+  .filter((key) => key.startsWith('Icon'))
+  .sort();
+const defaultOnClick = fn();
 
 const meta: Meta<typeof ButtonAction> = {
   title: 'Components/Buttons/Button Action',
@@ -15,7 +22,7 @@ const meta: Meta<typeof ButtonAction> = {
           '```tsx',
           "import { ButtonAction } from 'planet-design-system-v1';",
           '',
-          '<ButtonAction aria-label="More actions" />',
+          '<ButtonAction iconName="IconDotsTypeVertical" aria-label="More actions" onClick={() => console.log("clicked")} />',
           '```',
         ].join('\n'),
       },
@@ -25,6 +32,8 @@ const meta: Meta<typeof ButtonAction> = {
   args: {
     size: 'md',
     state: 'default',
+    iconName: 'IconDotsTypeVertical',
+    onClick: defaultOnClick,
   },
   argTypes: {
     size: {
@@ -34,6 +43,15 @@ const meta: Meta<typeof ButtonAction> = {
     state: {
       control: 'select',
       options: ['default', 'hover', 'active', 'focus', 'pressed', 'disabled'],
+    },
+    iconName: {
+      control: 'select',
+      options: iconOptions,
+      description: 'Icon name from @justgo/planet-icons.',
+    },
+    onClick: {
+      control: false,
+      description: 'Click handler.',
     },
   },
 };
@@ -58,7 +76,15 @@ export const Sizes: Story = {
 
 export const States: Story = {
   render: () => (
-    <div style={{ display: 'grid', gap: 12, gridTemplateColumns: 'repeat(6, max-content)', alignItems: 'center' }}>
+    <div
+      style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(6, max-content)',
+        columnGap: 24,
+        alignItems: 'center',
+        padding: 4,
+      }}
+    >
       <ButtonAction state="default" aria-label="More actions default" />
       <ButtonAction state="hover" aria-label="More actions hover" />
       <ButtonAction state="active" aria-label="More actions active" />
@@ -75,9 +101,12 @@ export const Matrix: Story = {
     const states = ['default', 'hover', 'active', 'focus', 'pressed', 'disabled'] as const;
 
     return (
-      <div style={{ display: 'grid', gap: 16 }}>
+      <div style={{ display: 'grid', rowGap: 24, padding: 4 }}>
         {states.map((state) => (
-          <div key={state} style={{ display: 'grid', gridTemplateColumns: 'repeat(5, max-content)', gap: 16 }}>
+          <div
+            key={state}
+            style={{ display: 'grid', gridTemplateColumns: 'repeat(5, max-content)', columnGap: 24 }}
+          >
             {sizes.map((size) => (
               <ButtonAction
                 key={`${state}-${size}`}

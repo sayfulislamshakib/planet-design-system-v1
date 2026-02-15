@@ -29,11 +29,35 @@ const preview: Preview = {
   ],
   parameters: {
     options: {
-      storySort: {
-        order: [
-          'Components',
-          ['Button', 'ButtonGroup', 'ButtonSplit'],
-        ],
+      storySort: (a, b) => {
+        const getEntry = (entry) => (Array.isArray(entry) ? entry[1] : entry) ?? {};
+        const compareText = (left = '', right = '') =>
+          left.localeCompare(right, 'en-US', { numeric: true, sensitivity: 'base' });
+        const isDocsEntry = (entry) =>
+          entry.type === 'docs' || entry.name === 'Docs' || String(entry.id ?? '').endsWith('--docs');
+
+        const entryA = getEntry(a);
+        const entryB = getEntry(b);
+
+        const byTitle = compareText(entryA.title, entryB.title);
+        if (byTitle !== 0) return byTitle;
+
+        const aIsDocs = isDocsEntry(entryA);
+        const bIsDocs = isDocsEntry(entryB);
+        if (aIsDocs !== bIsDocs) return aIsDocs ? -1 : 1;
+
+        const isButtonStories =
+          entryA.title === 'Components/Buttons/Button' && entryB.title === 'Components/Buttons/Button';
+        if (isButtonStories) {
+          const aIsDefault = entryA.name === 'Default';
+          const bIsDefault = entryB.name === 'Default';
+          if (aIsDefault !== bIsDefault) return aIsDefault ? -1 : 1;
+        }
+
+        const byName = compareText(entryA.name, entryB.name);
+        if (byName !== 0) return byName;
+
+        return compareText(entryA.id, entryB.id);
       },
     },
     controls: {

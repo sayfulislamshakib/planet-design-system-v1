@@ -136,13 +136,6 @@ export const Controlled: Story = {
   render: (args) => {
     const [value, setValue] = useState(10);
 
-    return (
-      <div style={{ display: 'grid', gap: 10, justifyItems: 'center' }}>
-        <NumberInput {...args} value={value} onValueChange={setValue} />
-        <div style={{ fontFamily: 'Inter, sans-serif', fontSize: 13, color: '#455a64' }}>
-          Value: {value}
-        </div>
-      </div>
-    );
+    return <NumberInput {...args} value={value} onValueChange={setValue} />;
   },
 };

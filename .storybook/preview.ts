@@ -54,6 +54,14 @@ const preview: Preview = {
           if (aIsDefault !== bIsDefault) return aIsDefault ? -1 : 1;
         }
 
+        const isTooltipStories =
+          entryA.title === 'Components/Tooltip' && entryB.title === 'Components/Tooltip';
+        if (isTooltipStories) {
+          const aIsPlayground = entryA.name === 'Playground';
+          const bIsPlayground = entryB.name === 'Playground';
+          if (aIsPlayground !== bIsPlayground) return aIsPlayground ? -1 : 1;
+        }
+
         const byName = compareText(entryA.name, entryB.name);
         if (byName !== 0) return byName;
 

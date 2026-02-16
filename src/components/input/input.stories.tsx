@@ -228,3 +228,22 @@ export const FocusByControlClick: Story = {
     await expect(input).toHaveFocus();
   },
 };
+
+export const AutoFilledStateOnType: Story = {
+  args: {
+    state: 'default',
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const root = canvasElement.querySelector('.pds-input');
+    const input = canvas.getByPlaceholderText('Placeholder text');
+
+    if (!root) {
+      throw new Error('Input root was not found.');
+    }
+
+    await expect(root).toHaveAttribute('data-state', 'default');
+    await userEvent.type(input, 'Planet');
+    await expect(root).toHaveAttribute('data-state', 'filled');
+  },
+};

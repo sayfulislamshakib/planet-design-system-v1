@@ -1,5 +1,5 @@
-import type { InputHTMLAttributes, MouseEvent, ReactNode } from 'react';
-import { useId, useRef } from 'react';
+import type { ChangeEventHandler, InputHTMLAttributes, MouseEvent, ReactNode } from 'react';
+import { useId, useRef, useState } from 'react';
 import { IconInfoStyleOutline, IconSearch } from '@justgo/planet-icons';
 import './input.css';
 
@@ -27,6 +27,20 @@ export type InputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'size' | 't
   inputType?: InputHTMLAttributes<HTMLInputElement>['type'];
 };
 
+function hasFieldValue(
+  candidate: InputHTMLAttributes<HTMLInputElement>['value'] | InputHTMLAttributes<HTMLInputElement>['defaultValue'],
+): boolean {
+  if (candidate === undefined || candidate === null) {
+    return false;
+  }
+
+  if (Array.isArray(candidate)) {
+    return candidate.length > 0;
+  }
+
+  return String(candidate).length > 0;
+}
+
 export function Input({
   size = 'md',
   type = 'regular',
@@ -48,6 +62,9 @@ export function Input({
   id,
   required = false,
   disabled = false,
+  value,
+  defaultValue,
+  onChange,
   placeholder = 'Placeholder text',
   'aria-invalid': ariaInvalid,
   ...rest
@@ -55,6 +72,10 @@ export function Input({
   const generatedId = useId();
   const inputRef = useRef<HTMLInputElement>(null);
   const fieldId = id ?? `pds-input-${generatedId}`;
+  const isControlled = value !== undefined;
+  const [uncontrolledFilled, setUncontrolledFilled] = useState(() => hasFieldValue(defaultValue));
+  const isFilled = isControlled ? hasFieldValue(value) : uncontrolledFilled;
+  const resolvedState: InputState = state === 'default' && isFilled ? 'filled' : state;
   const resolvedDisabled = disabled || state === 'disable';
   const hasHelperText = showHelperText && Boolean(helperText);
   const forceHover = !resolvedDisabled && hover;
@@ -80,12 +101,21 @@ export function Input({
     inputRef.current?.focus();
   };
 
+  const handleInputChange: ChangeEventHandler<HTMLInputElement> = (event) => {
+    onChange?.(event);
+    if (event.defaultPrevented || isControlled) {
+      return;
+    }
+
+    setUncontrolledFilled(event.currentTarget.value.length > 0);
+  };
+
   return (
     <div
       className={['pds-input', className].filter(Boolean).join(' ')}
       data-size={size}
       data-type={type}
-      data-state={state}
+      data-state={resolvedState}
       data-label-position={labelPosition}
       data-disabled={resolvedDisabled ? 'true' : 'false'}
       data-hover={forceHover ? 'true' : 'false'}
@@ -120,10 +150,13 @@ export function Input({
               ref={inputRef}
               type={inputType}
               className="pds-input__field"
+              value={value}
+              defaultValue={defaultValue}
               required={required}
               disabled={resolvedDisabled}
               placeholder={placeholder}
               aria-invalid={resolvedAriaInvalid}
+              onChange={handleInputChange}
             />
 
             {endAdornment && <span className="pds-input__adornment">{endAdornment}</span>}

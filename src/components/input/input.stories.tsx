@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { expect, userEvent, within } from 'storybook/test';
 import { Input } from './input';
 
 const meta: Meta<typeof Input> = {
@@ -211,4 +212,19 @@ export const LabelPositions: Story = {
       <Input {...args} labelPosition="left" />
     </div>
   ),
+};
+
+export const FocusByControlClick: Story = {
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const control = canvasElement.querySelector('.pds-input__control');
+    const input = canvas.getByPlaceholderText('Placeholder text');
+
+    if (!control) {
+      throw new Error('Input control was not found.');
+    }
+
+    await userEvent.click(control);
+    await expect(input).toHaveFocus();
+  },
 };

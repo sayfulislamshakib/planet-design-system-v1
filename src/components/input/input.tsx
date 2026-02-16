@@ -1,5 +1,5 @@
-import type { InputHTMLAttributes, ReactNode } from 'react';
-import { useId } from 'react';
+import type { InputHTMLAttributes, MouseEvent, ReactNode } from 'react';
+import { useId, useRef } from 'react';
 import { IconInfoStyleOutline, IconSearch } from '@justgo/planet-icons';
 import './input.css';
 
@@ -53,12 +53,32 @@ export function Input({
   ...rest
 }: InputProps) {
   const generatedId = useId();
+  const inputRef = useRef<HTMLInputElement>(null);
   const fieldId = id ?? `pds-input-${generatedId}`;
   const resolvedDisabled = disabled || state === 'disable';
   const hasHelperText = showHelperText && Boolean(helperText);
   const forceHover = !resolvedDisabled && hover;
   const forceFocus = !resolvedDisabled && focus;
   const resolvedAriaInvalid = ariaInvalid ?? (type === 'error' ? true : undefined);
+  const focusableSelector = 'button, a, input, select, textarea, [role="button"], [role="link"], [tabindex]:not([tabindex="-1"])';
+
+  const handleControlMouseDown = (event: MouseEvent<HTMLDivElement>) => {
+    if (resolvedDisabled) {
+      return;
+    }
+
+    const target = event.target as HTMLElement;
+    if (target instanceof HTMLInputElement) {
+      return;
+    }
+
+    if (target.closest(focusableSelector)) {
+      return;
+    }
+
+    event.preventDefault();
+    inputRef.current?.focus();
+  };
 
   return (
     <div
@@ -85,7 +105,7 @@ export function Input({
         )}
 
         <div className="pds-input__body">
-          <div className="pds-input__control">
+          <div className="pds-input__control" onMouseDown={handleControlMouseDown}>
             {leftIcon && (
               <span className="pds-input__icon pds-input__icon--left" aria-hidden="true">
                 <IconSearch size="md" />
@@ -97,6 +117,7 @@ export function Input({
             <input
               {...rest}
               id={fieldId}
+              ref={inputRef}
               type={inputType}
               className="pds-input__field"
               required={required}

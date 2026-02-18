@@ -8,3 +8,4 @@ export * from './tooltip';
 export * from './overlay';
 export * from './NumberInput';
 export * from './input';
+export * from './avatar';

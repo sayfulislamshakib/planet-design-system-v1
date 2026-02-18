@@ -1,0 +1,102 @@
+.pds-avatar {
+  --avatar-size: 40px;
+  --avatar-font-size: 14px;
+  --avatar-letter-size: var(--avatar-font-size);
+  --avatar-radius: 999px;
+  --avatar-bg: var(--pds-avatar-auto-bg, var(--pds-color-surface-3, #eceff1));
+  --avatar-text-color: var(--pds-avatar-auto-text, var(--pds-color-text-muted, #37474f));
+  --avatar-border-color: var(--pds-avatar-auto-border, var(--pds-color-border, #cfd8dc));
+
+  align-items: center;
+  background-color: var(--avatar-bg);
+  border: 1px solid var(--avatar-border-color);
+  border-radius: var(--avatar-radius);
+  box-sizing: border-box;
+  color: var(--avatar-text-color);
+  display: inline-flex;
+  flex-shrink: 0;
+  font-family: var(--pds-font-body);
+  font-size: var(--avatar-font-size);
+  font-weight: 600;
+  height: var(--avatar-size);
+  justify-content: center;
+  line-height: 1;
+  overflow: hidden;
+  position: relative;
+  text-transform: uppercase;
+  user-select: none;
+  width: var(--avatar-size);
+}
+
+.pds-avatar[data-shape='rounded'] {
+  --avatar-radius: var(--pds-radius-sm, 4px);
+}
+
+.pds-avatar[data-variant='default'][data-has-image='false'][data-size='xs'] {
+  --avatar-letter-size: calc(var(--avatar-font-size) + 2px);
+}
+
+.pds-avatar[data-variant='default'][data-has-image='false'][data-size='sm'] {
+  --avatar-letter-size: calc(var(--avatar-font-size) + 4px);
+}
+
+.pds-avatar[data-variant='default'][data-has-image='false'][data-size='md'] {
+  --avatar-letter-size: calc(var(--avatar-font-size) + 5px);
+}
+
+.pds-avatar[data-variant='default'][data-has-image='false'][data-size='lg'] {
+  --avatar-letter-size: calc(var(--avatar-font-size) + 6px);
+}
+
+.pds-avatar[data-variant='default'][data-has-image='false'][data-size='xl'] {
+  --avatar-letter-size: calc(var(--avatar-font-size) + 8px);
+}
+
+.pds-avatar[data-state='disabled'] {
+  opacity: 0.56;
+}
+
+.pds-avatar[data-size='xs'] {
+  --avatar-size: 24px;
+  --avatar-font-size: 11px;
+}
+
+.pds-avatar[data-size='sm'] {
+  --avatar-size: 32px;
+  --avatar-font-size: 12px;
+}
+
+.pds-avatar[data-size='md'] {
+  --avatar-size: 40px;
+  --avatar-font-size: 14px;
+}
+
+.pds-avatar[data-size='lg'] {
+  --avatar-size: 48px;
+  --avatar-font-size: 16px;
+}
+
+.pds-avatar[data-size='xl'] {
+  --avatar-size: 64px;
+  --avatar-font-size: 20px;
+}
+
+.pds-avatar__image {
+  display: block;
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+
+.pds-avatar__fallback {
+  align-items: center;
+  display: inline-flex;
+  justify-content: center;
+  line-height: 1;
+  font-size: var(--avatar-letter-size);
+  height: 100%;
+  letter-spacing: 0.02em;
+  text-align: center;
+  transform: translateY(-0.01em);
+  width: 100%;
+}
